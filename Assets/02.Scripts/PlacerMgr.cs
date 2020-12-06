@@ -7,6 +7,7 @@ using UnityEngine.XR.ARSubsystems;
 public class PlacerMgr : MonoBehaviour
 {
     public GameObject solarSystem;
+    public TouchMgr touchMgr;
 
     private ARRaycastManager raycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
@@ -26,7 +27,9 @@ public class PlacerMgr : MonoBehaviour
             //레이캐스팅
             if (raycastManager.Raycast(touch.position, hits, TrackableType.All))
             {
-                Instantiate(solarSystem, hits[0].pose.position, hits[0].pose.rotation);
+                GameObject obj = Instantiate(solarSystem, hits[0].pose.position, hits[0].pose.rotation);
+                touchMgr.targetTr = obj.transform;
+                this.enabled = false;
             }
         }
     }
