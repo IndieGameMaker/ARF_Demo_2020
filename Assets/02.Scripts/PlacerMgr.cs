@@ -12,6 +12,8 @@ public class PlacerMgr : MonoBehaviour
     private ARRaycastManager raycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
+    public bool useTouchMgr = false;
+
     void Start()
     {
         raycastManager = GetComponent<ARRaycastManager>();
@@ -28,8 +30,11 @@ public class PlacerMgr : MonoBehaviour
             if (raycastManager.Raycast(touch.position, hits, TrackableType.All))
             {
                 GameObject obj = Instantiate(solarSystem, hits[0].pose.position, hits[0].pose.rotation);
-                touchMgr.targetTr = obj.transform;
-                this.enabled = false;
+                if (useTouchMgr)
+                {
+                    touchMgr.targetTr = obj.transform;
+                    this.enabled = false;
+                }
             }
         }
     }
