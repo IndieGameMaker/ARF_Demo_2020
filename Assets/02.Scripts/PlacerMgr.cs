@@ -18,6 +18,16 @@ public class PlacerMgr : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.touchCount == 0) return;
+
+        Touch touch = Input.GetTouch(0);
+        if (touch.phase == TouchPhase.Began)
+        {
+            //레이캐스팅
+            if (raycastManager.Raycast(touch.position, hits, TrackableType.All))
+            {
+                Instantiate(solarSystem, hits[0].pose.position, hits[0].pose.rotation);
+            }
+        }
     }
 }
