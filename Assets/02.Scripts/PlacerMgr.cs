@@ -8,13 +8,14 @@ public class PlacerMgr : MonoBehaviour
 {
     public GameObject solarSystem;
 
-    // Start is called before the first frame update
+    private ARRaycastManager raycastManager;
+    private List<ARRaycastHit> hits = new List<ARRaycastHit>();
+
     void Start()
     {
-        
+        raycastManager = GetComponent<ARRaycastManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
