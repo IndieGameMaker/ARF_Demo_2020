@@ -7,15 +7,16 @@ public class RotatePlanet : MonoBehaviour
     public Transform targetTr;
     public float rotateSpeed = 10.0f;
 
-    // Start is called before the first frame update
+    private Transform tr;
+
     void Start()
     {
-        
+        tr = GetComponent<Transform>();        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        tr.RotateAround(targetTr.position, Vector3.up, Time.deltaTime * rotateSpeed);
     }
 }
